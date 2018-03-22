@@ -1,45 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+
 
 class App extends Component {
   constructor(){
-    super();
+    super()
     this.state = {
-      username: '',
-      password: ''
+      signup: '',
+      login: ''
     }
-    this.handleUsername = this.handleUsername.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-  }
-  
-  handleUsername(e){
-    this.setState({
-      username: e.target.value
-    });
+    this.handleSignupSubmit = this.handleSignupSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  handlePassword(e){
-    this.setState({
-      password: e.target.value
-    });
+  handleSignupSubmit(e){
+    this.setState({submit: e.target.value})
+  };
+
+  handleLoginSubmit(e){
+    this.setState({login: e.target.value})
+  };
+
+  getSigup(e){
+    signupForm(this.state.signup)
+      .then(response)
   }
-  
   render() {
     return (
       <div>
-        <h1>Sign Up</h1>
-        <form>
-          <input type="text"
-                 placeholder='Email'
-                 required/>
-          <input type="password"
-                 placeholder='Password'
-                 required/>
-          <input type="text"
-                 placeholder='Username'
-                 required/>
-          <button type="submit">Sign Up</button>
-        </form>
+        <h1>Magic the Gathering Deck Builder</h1>
+        <button type="submit" onSubmit={this.handleSignupSubmit}>Signup</button>
+        <button type="submit" onSubmit={this.handleLoginSubmit}>Login</button>
       </div>
     );
   }
